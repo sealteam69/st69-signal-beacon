@@ -1,32 +1,31 @@
-# ST69 Signal Beacon
+# ST69 Signal Beacon — version 3
 
-A buildless responsive static landing page. Original ST69 patch included. No dependencies, external fonts, analytics, cookies, storage, backend, or data collection. CNM is a fictional local terminal; commands never leave the page.
+Buildless static site. No backend, analytics, browser storage, or data collection. All artwork and IBM Plex Mono are served locally. The font license is included in assets/fonts/OFL.txt.
 
 ## Preview
 
-From this directory, run `python3 -m http.server 6969 --bind 127.0.0.1`, then open http://127.0.0.1:6969. Stop with Ctrl+C.
+Run `python3 -m http.server 6971 --bind 127.0.0.1` in this folder, then open http://127.0.0.1:6971. Or open index.html directly.
 
-## Vercel preparation
+## Experience
 
-This folder is the project root. Import it into a Vercel project with framework “Other”, no build command, and output directory `.`. `vercel.json` supplies static hosting configuration and security headers. No environment variables are required.
+A green, irregularly pulsing beacon sits in the top-right of an otherwise empty header. The celestial chart rotates behind the patch, brightening on hover or keyboard focus. The patch has no click action.
 
-Deployment is intentionally not performed. Vercel deployments can be publicly accessible: obtain owner approval before running `vercel` or publishing through the dashboard. Do not add st69.lol, change DNS, or attach a production domain until separately approved. After approval, deploy the reviewed files, verify desktop/mobile and terminal commands, then plan domain changes.
+The two buttons are independent:
+- ESTABLISH CONTACT WITH COMMAND opens a fictional text echo from Eddie with an animated waveform. No audio plays.
+- WAKE THE MIRROR opens the local CNM terminal. Commands: help, mirror, signal, status, clear.
 
-## Design edits
+The listening/mirror copy appears only in CNM. Both dialogs support Escape, Close, backdrop dismissal, and focus restoration. Reduced-motion preferences stop animation and transitions, including the green beacon flicker.
 
-`style.css`: palette, spacing, typography, responsive layout. `index.html`: landing copy and structure. `signal.js`: starfield and terminal responses. `assets/st69-patch.png`: supplied patch, unmodified. The motto appears only within the original patch artwork.
+Coordinates: west 144, north 33, east 69. Caption: FIG. 069 – THE INSIGNIA.
 
-## Working locally
+## Apply to the working repository
 
-This folder is a standalone Git repository on the `main` branch. Open the folder in your code editor, edit the HTML/CSS/JavaScript, save, and refresh the preview. No build step is needed. You can also open `index.html` directly in your browser.
+The requested destination /Users/localserver/dev/st69-signal-beacon is readable but write access was not granted to this chat. That repository is unchanged. Copy index.html, style.css, signal.js, vercel.json and assets/ into it, replacing matching files. Preserve its .git directory. Review the diff before committing.
 
-- `index.html` — page structure and wording
-- `style.css` — colours, typography, layout, mobile styles
-- `signal.js` — terminal commands and decorative stars
-- `assets/` — patch artwork
+## Assets
 
-When ready, create an empty GitHub repository, add its URL as the `origin` remote, then push `main`. No remote or automatic deployment is configured.
+The original patch is unchanged. celestial-chart.jpg and starfield.jpg are user-supplied aesthetic references included in the local preview. Creator attribution and publication permissions were not supplied. IBM Plex Mono is distributed under the included SIL Open Font License.
 
-## Visual references for the next iteration
+## Hosting
 
-Antique celestial charts, engraved concentric gold rings, deep black starfields, and the warm gold dust of the Milky Way. Retain obsidian, antique gold, gunmetal, and starlight. References are inspiration; they have not been added to the published assets.
+Vercel configuration is included: framework Other, no build command, output directory `.`. No deployment or DNS change has been made. Owner approval is required before publication.
