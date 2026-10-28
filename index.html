@@ -1,36 +1,113 @@
 <!doctype html>
-<html lang="en"><head>
-<meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><meta name="theme-color" content="#080a0b"><meta name="description" content="SEAL TEAM 69. Not all orders are announced. Some are assembled in silence."><title>ST69 — SIGNAL BEACON</title>
-<link rel="icon" href="assets/st69-patch.png"><link rel="preload" href="assets/fonts/IBMPlexMono-Regular.ttf" as="font" type="font/ttf" crossorigin><link rel="stylesheet" href="style.css"><script src="signal.js" defer></script>
-</head><body>
-<div class="cosmos" aria-hidden="true"></div><div class="vignette" aria-hidden="true"></div>
-<header class="beacon-header"><p class="status"><span aria-hidden="true"></span> BEACON ACTIVE</p></header>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#080a0b">
+  <meta name="description" content="SEAL TEAM 69. Not all orders are announced. Some are assembled in silence.">
+  <title>ST69 — SIGNAL BEACON</title>
+  <link rel="icon" href="assets/st69-patch.png">
+  <link rel="preload" href="assets/fonts/IBMPlexMono-Regular.ttf" as="font" type="font/ttf" crossorigin>
+  <link rel="stylesheet" href="style.css">
+  <script src="cnm-terminal.js" defer></script>
+  <script src="beacon.js" defer></script>
+</head>
+<body>
+  <div class="cosmos" aria-hidden="true"></div>
+  <div class="vignette" aria-hidden="true"></div>
 
-<main class="beacon">
-<p class="invocation">Not all orders are announced. Some are assembled in silence.</p>
-<div class="insignia-stage">
-<div class="celestial-disc" aria-hidden="true"></div><div class="orbit outer" aria-hidden="true"></div><div class="orbit inner" aria-hidden="true"></div><span class="coordinate north" aria-hidden="true">33</span><span class="coordinate west" aria-hidden="true">144</span><span class="coordinate east" aria-hidden="true">69</span>
-<div class="insignia" tabindex="0" role="img" aria-label="SEAL TEAM 69 insignia. Focus or hover to illuminate the celestial rings."><img src="assets/st69-patch.png" alt="SEAL TEAM 69 insignia, embroidered in antique gold and gunmetal" width="1024" height="1024"></div>
-</div>
-<p class="figure">FIG. 069 <span>–</span> THE INSIGNIA</p>
-<h1>SEAL TEAM 69</h1>
-<div class="contact-actions">
-<button class="contact" id="command-contact" type="button" aria-haspopup="dialog" aria-controls="echo-dialog"><span class="bracket" aria-hidden="true">[</span><span>ESTABLISH CONTACT</span><span class="bracket" aria-hidden="true">]</span></button>
-<span class="action-divider" aria-hidden="true"></span>
-<button class="contact" id="contact-button" type="button" aria-haspopup="dialog" aria-controls="cnm-dialog"><span class="bracket" aria-hidden="true">[</span><span>WAKE THE MIRROR</span><span class="bracket" aria-hidden="true">]</span></button>
-</div>
-</main>
+  <header class="beacon-header">
+    <p class="status"><span aria-hidden="true"></span> BEACON ACTIVE</p>
+  </header>
 
-<dialog id="cnm-dialog" aria-labelledby="terminal-title" aria-describedby="terminal-description">
-<div class="terminal-bar"><h2 id="terminal-title"><span class="dot"></span> CNM / COMMAND</h2><button class="close" type="button" aria-label="Close terminal">CLOSE <span aria-hidden="true">×</span></button></div>
-<div class="cnm-intro"><p class="terminal-description" id="terminal-description">SOMETHING IS LISTENING</p><p class="terminal-subtitle">A signal in the dark.<br>A mirror awaiting to wake.</p></div>
-<div class="terminal-screen"><div class="boot"><p class="boot-one">[SYS] Quiet channel established.</p><p class="boot-two">[CNM] THE MIRROR IS NOT YET AWAKE.</p><p class="boot-three muted">Type help to explore the signal.</p></div><div id="terminal-output" role="log" aria-live="polite" aria-relevant="additions"></div></div>
-<form id="command-form" autocomplete="off"><label for="command">visitor@st69 <span>~ &gt;</span></label><input id="command" name="command" aria-label="Terminal command" placeholder="enter a command…" maxlength="80" spellcheck="false" autocapitalize="off"><button type="submit" aria-label="Run command">↵</button></form>
-<div class="terminal-bottom"><span>LOCAL SIMULATION</span><div><button type="button" data-command="help">HELP</button><button type="button" data-command="mirror">MIRROR</button><button type="button" data-command="signal">SIGNAL</button></div></div>
-</dialog>
-<dialog id="echo-dialog" aria-labelledby="echo-title" aria-describedby="echo-description">
-<div class="terminal-bar"><h2 id="echo-title"><span class="dot"></span> COMMAND / ECHO 069</h2><button class="close" type="button" aria-label="Close command echo">CLOSE <span aria-hidden="true">×</span></button></div>
-<div class="echo-body"><p class="echo-source">EDDIE / RESIDUAL SIGNAL</p><div class="waveform" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div><p class="echo-message" id="echo-description">“Hold the channel.<br>You are not the only one listening.”</p><p class="echo-end">END OF ECHO <span aria-hidden="true">_</span></p></div>
-</dialog>
-<noscript><p class="noscript">The signal is present. Enable JavaScript to open the interactive terminal.</p></noscript>
-</body></html>
+  <main class="beacon">
+    <p class="invocation">Not all orders are announced. Some are assembled in silence.</p>
+
+    <div class="insignia-stage">
+      <div class="celestial-disc" aria-hidden="true"></div>
+      <div class="orbit outer" aria-hidden="true"></div>
+      <div class="orbit inner" aria-hidden="true"></div>
+      <span class="coordinate north" aria-hidden="true">33</span>
+      <span class="coordinate west" aria-hidden="true">144</span>
+      <button class="coordinate east secret-number" type="button" aria-label="69. Reveal the hidden signal" aria-pressed="false">
+        <span class="number-default">69</span>
+        <span class="number-secret" aria-hidden="true">SEXY 69 <img src="assets/lips.svg" alt="" width="23" height="15"></span>
+      </button>
+      <button class="insignia" id="patch-audio" type="button" aria-label="Play a distant Eddie echo" aria-pressed="false" aria-describedby="audio-status">
+        <img src="assets/st69-patch.png" alt="SEAL TEAM 69 insignia, embroidered in antique gold and gunmetal" width="1024" height="1024">
+      </button>
+    </div>
+
+    <p class="figure">FIG. 069 <span>–</span> THE INSIGNIA</p>
+    <h1 class="headline" aria-label="SEAL TEAM 69">
+      <span class="typed-title" aria-hidden="true"><span style="--i:0">S</span><span style="--i:1">E</span><span style="--i:2">A</span><span style="--i:3">L</span><span style="--i:4">&nbsp;</span><span style="--i:5">T</span><span style="--i:6">E</span><span style="--i:7">A</span><span style="--i:8">M</span></span>
+      <button class="title-number secret-number" type="button" aria-label="69. Reveal the hidden signal" aria-pressed="false">
+        <span class="number-default">69</span>
+        <span class="number-secret" aria-hidden="true">SEXY 69 <img src="assets/lips.svg" alt="" width="27" height="18"></span>
+      </button>
+    </h1>
+
+    <div class="contact-actions">
+      <button class="contact" id="command-contact" type="button" aria-haspopup="dialog" aria-controls="echo-dialog"><span class="bracket" aria-hidden="true">[</span><span>ESTABLISH CONTACT</span><span class="bracket" aria-hidden="true">]</span></button>
+      <span class="action-divider" aria-hidden="true"></span>
+      <button class="contact" id="contact-button" type="button" aria-haspopup="dialog" aria-controls="cnm-dialog"><span class="bracket" aria-hidden="true">[</span><span>WAKE THE MIRROR</span><span class="bracket" aria-hidden="true">]</span></button>
+    </div>
+    <p class="audio-status" id="audio-status" role="status" aria-live="polite">TOUCH THE INSIGNIA. LISTEN FOR THE ECHO.</p>
+  </main>
+
+  <footer class="beacon-footer"><span>SEAL TEAM 69<sup>®</sup></span></footer>
+
+  <!-- CNM is a fictional local interface. Commands never leave the page. -->
+  <dialog id="cnm-dialog" aria-labelledby="terminal-title" aria-describedby="terminal-description">
+    <div class="terminal-bar">
+      <h2 id="terminal-title"><span class="dot"></span> CNM / COMMAND</h2>
+      <button class="close" type="button" aria-label="Close terminal">CLOSE <span aria-hidden="true">×</span></button>
+    </div>
+    <div class="cnm-intro">
+      <p class="terminal-description" id="terminal-description">SOMETHING IS LISTENING</p>
+      <p class="terminal-subtitle">A signal in the dark.<br>A mirror waiting to wake.</p>
+    </div>
+    <div class="terminal-screen">
+      <div class="boot">
+        <p class="boot-one">[SYS] Quiet channel established.</p>
+        <p class="boot-two">[CNM] THE MIRROR IS NOT YET AWAKE.</p>
+        <p class="boot-three muted">Type help to explore the signal.</p>
+      </div>
+      <div id="terminal-output" role="log" aria-live="polite" aria-relevant="additions"></div>
+    </div>
+    <form id="command-form" autocomplete="off">
+      <label for="command">visitor@st69 <span>~ &gt;</span></label>
+      <input id="command" name="command" aria-label="Terminal command" placeholder="enter a command…" maxlength="80" spellcheck="false" autocapitalize="off">
+      <button type="submit" aria-label="Run command">↵</button>
+    </form>
+    <div class="terminal-bottom">
+      <span>LOCAL SIMULATION</span>
+      <button type="button" data-command="help">HELP</button>
+    </div>
+    <div class="terminal-prompts" aria-label="Explore six CNM signals">
+      <button type="button" data-command="signal">01 / SIGNAL</button>
+      <button type="button" data-command="mirror">02 / MIRROR</button>
+      <button type="button" data-command="status">03 / STATUS</button>
+      <button type="button" data-command="mythic">04 / MYTHIC</button>
+      <button type="button" data-command="memetic">05 / MEMETIC</button>
+      <button type="button" data-command="queen">06 / QUEEN</button>
+    </div>
+  </dialog>
+
+  <dialog id="echo-dialog" aria-labelledby="echo-title" aria-describedby="echo-description">
+    <div class="terminal-bar">
+      <h2 id="echo-title"><span class="dot"></span> COMMAND / ECHO 069</h2>
+      <button class="close" type="button" aria-label="Close command echo">CLOSE <span aria-hidden="true">×</span></button>
+    </div>
+    <div class="echo-body">
+      <p class="echo-source">EDDIE / RESIDUAL SIGNAL</p>
+      <div class="waveform" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i><i></i></div>
+      <p class="echo-message" id="echo-description">“Hold the channel.<br>You are not the only one listening.”</p>
+      <p class="echo-end">END OF ECHO <span aria-hidden="true">_</span></p>
+    </div>
+  </dialog>
+
+  <audio id="eddie-audio" preload="none" src="assets/eddie_santiago_de_verdad.m4a"></audio>
+  <noscript><p class="noscript">Enable JavaScript to explore the terminal and hear the echo.</p></noscript>
+</body>
+</html>

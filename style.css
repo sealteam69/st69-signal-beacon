@@ -1,36 +1,256 @@
-@font-face{font-family:'IBM Plex Mono';src:url('assets/fonts/IBMPlexMono-Regular.ttf') format('truetype');font-style:normal;font-weight:400;font-display:swap}
-:root{color-scheme:dark;--ink:#080a0b;--gold:#bea46c;--bright:#e5d3a9;--light:#d1cfc5;--muted:#93958e;--line:#bda16c30;font-family:'IBM Plex Mono',monospace;font-synthesis:none}*{box-sizing:border-box}body{margin:0;background:var(--ink);color:var(--light);min-width:280px}button,input{font:inherit}button{color:inherit;cursor:pointer}button:focus-visible,input:focus-visible{outline:1px solid var(--bright);outline-offset:7px}button{touch-action:manipulation}.cosmos{position:fixed;inset:0;z-index:-3;background:linear-gradient(#07090a55,#07090a77),url('assets/starfield.jpg') center 67%/max(160vw, 1500px) auto;opacity:.72;pointer-events:none}.vignette{position:fixed;inset:0;z-index:-2;background:radial-gradient(ellipse at 50% 40%,transparent 18%,#080a0ba6 75%,#080a0bed 100%);pointer-events:none}.beacon{display:flex;flex-direction:column;align-items:center;text-align:center;min-height:100svh;padding:36px 24px 32px;overflow:hidden}.status{display:flex;align-items:center;gap:10px;font-size:9px;letter-spacing:2.6px;color:var(--gold);margin:0 0 28px}.status span,.dot{display:inline-block;border-radius:50%;width:4px;height:4px;background:var(--gold);box-shadow:0 0 12px #bea46caa}.invocation{font-size:clamp(11px,1.1vw,14px);line-height:1.9;letter-spacing:.3px;margin:0 0 13px;color:#c8c6b9}.insignia-stage{position:relative;display:grid;place-items:center;width:min(55vh,450px,85vw);aspect-ratio:1;margin:12px 0 14px;isolation:isolate}.celestial-disc{position:absolute;inset:0;border-radius:50%;background:url('assets/celestial-chart.jpg') center/cover;opacity:.32;filter:sepia(.15) brightness(.8);mask-image:radial-gradient(circle,#000 63%,transparent 72%);animation:chart-drift 200s linear infinite;transition:opacity 1s,filter 1s;z-index:-1}.orbit{position:absolute;border:1px solid #c2a06245;border-radius:50%;pointer-events:none;transition:transform 1.6s,opacity .8s}.outer{inset:-5px;opacity:.65}.outer:after{content:'';position:absolute;width:4px;height:4px;border-radius:50%;background:var(--gold);top:50%;left:-2px;box-shadow:0 0 12px #bea46c88}.inner{inset:18px;border-style:dashed;opacity:.5}.insignia{width:73%;aspect-ratio:1;padding:0;border:0;border-radius:50%;background:#090c0e;box-shadow:0 12px 40px #0009,0 0 50px #bea46c10;transition:transform .9s,box-shadow .9s;position:relative}.insignia img{display:block;width:100%;height:100%;border-radius:50%;filter:brightness(.9);transition:filter .9s}.coordinate{position:absolute;font-size:8px;letter-spacing:2px;color:#a18b59;pointer-events:none}.north{top:-18px;font-size:7px}.west{left:-20px}.east{right:-20px}.insignia-stage:has(.insignia:hover) .celestial-disc,.insignia-stage:has(.insignia:focus-visible) .celestial-disc{opacity:.6;filter:sepia(.15) brightness(1)}.insignia-stage:has(.insignia:hover) .outer,.insignia-stage:has(.insignia:focus-visible) .outer{transform:rotate(35deg);opacity:1}.insignia:hover,.insignia:focus-visible{transform:scale(1.025);box-shadow:0 12px 45px #000b,0 0 70px #bea46c29}.insignia:hover img{filter:brightness(1.05)}.figure{font-size:8px;letter-spacing:2px;color:var(--gold);margin:4px 0 20px}.figure span{margin:0 10px;color:#7c765e}h1{font-size:clamp(21px,2.7vw,34px);letter-spacing:clamp(3px,.55vw,7px);font-weight:400;line-height:1.3;margin:0 0 9px;padding-left:5px}.tagline{font-size:11px;color:#b1b2a7;letter-spacing:.45px;margin:0}.contact{display:flex;align-items:center;gap:15px;background:transparent;border:0;padding:18px 8px;margin-top:12px;font-size:9px;letter-spacing:1.5px;color:var(--gold);transition:color .3s,text-shadow .3s}.contact:hover{color:#efdeb4;text-shadow:0 0 18px #bea46c80}.bracket{color:#817354;font-size:17px}.arrow{font-size:14px;transition:transform .3s}.contact:hover .arrow{transform:translate(2px,-2px)}.listening{margin-top:13px}.listening-line{display:block;width:1px;height:23px;background:linear-gradient(#bda16c00,#bda16c77);margin:0 auto 16px}.listening h2{font-size:8px;letter-spacing:2.8px;font-weight:400;color:#b5a27c;margin:0 0 10px}.listening p{font-size:9px;line-height:1.7;color:#91958c;margin:0}dialog{padding:0;width:min(660px,calc(100vw - 32px));max-height:calc(100svh - 40px);overflow:auto;border:1px solid #aa925c77;background:#090d0ff5;color:#c7beaa;box-shadow:0 0 100px #000b,0 0 50px #bea46c10}dialog::backdrop{background:#030608b8;backdrop-filter:blur(8px)}dialog[open]{animation:materialize .45s ease-out}.terminal-bar{display:flex;align-items:center;justify-content:space-between;border-bottom:1px solid var(--line);padding:17px 21px;background:#bea46c05;gap:12px}.terminal-bar h2{font-size:10px;font-weight:400;letter-spacing:1.7px;margin:0;color:var(--gold)}.dot{margin-right:8px;vertical-align:middle}.close{border:0;background:none;color:#a99c80;font-size:8px;letter-spacing:1px;padding:7px}.close span{font-size:18px;margin-left:10px;vertical-align:middle}.close:hover{color:#fff0cc}.terminal-description{font-size:9px;letter-spacing:2px;margin:26px 24px 20px;color:#9f967d}.terminal-screen{padding:0 24px;min-height:170px;max-height:40svh;overflow-y:auto;scrollbar-color:#5b523d transparent;font-size:11px;line-height:1.9}.terminal-screen p{margin:0 0 10px;white-space:pre-wrap;overflow-wrap:anywhere}.boot-two{color:#d9c48c}.muted{color:#858d81}.echo{color:#7f8a7e;margin-top:15px!important}.terminal-screen .boot-one{animation:boot .4s both}.terminal-screen .boot-two{animation:boot .4s .25s both}.terminal-screen .boot-three{animation:boot .4s .5s both}form{display:flex;align-items:center;gap:10px;margin:16px 24px 24px;border-top:1px solid #bda16c20;padding-top:12px;font-size:11px}label{white-space:nowrap;color:#b6a37a}label span{color:#758271}input{min-width:0;width:100%;background:transparent;border:0;color:#ded1b4;font-size:11px;padding:8px 0;border-radius:0}input::placeholder{color:#6b776e}form button{background:none;border:0;color:var(--gold);font-size:21px;padding:5px}.terminal-bottom{display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--line);padding:13px 22px;font-size:8px;letter-spacing:1px;color:#798074;gap:8px}.terminal-bottom>div{display:flex;gap:19px}.terminal-bottom button{border:0;background:none;padding:6px 0;color:#b3a17a;font-size:8px;letter-spacing:1px}.terminal-bottom button:hover{color:#f0ddb1}.noscript{text-align:center;font-size:11px;margin:10px 20px 30px}@keyframes chart-drift{to{transform:rotate(360deg)}}@keyframes materialize{from{opacity:0;transform:translateY(12px) scale(.985)}to{opacity:1;transform:none}}@keyframes boot{from{opacity:0;transform:translateY(3px)}to{opacity:1;transform:none}}@media(min-height:950px) and (min-width:700px){.beacon{padding-top:48px}.status{margin-bottom:35px}.insignia-stage{width:min(49vh,510px);margin-top:25px}.figure{margin-bottom:25px}.listening{margin-top:25px}}@media(max-width:600px){.beacon{padding:27px 20px 30px}.status{font-size:8px;margin-bottom:28px}.invocation{font-size:10px;line-height:1.95;margin-bottom:16px}.insignia-stage{width:min(80vw,370px);margin:17px 0}.figure{font-size:7px;letter-spacing:1.5px;margin:5px 0 23px}h1{font-size:24px;letter-spacing:3px}.tagline{font-size:9px}.contact{font-size:8px;letter-spacing:.6px;gap:10px;margin-top:16px}.listening{margin-top:15px}.listening p{font-size:8px}.listening h2{font-size:7px}.terminal-bar{padding:12px 14px}.terminal-bar h2{font-size:9px}.terminal-description{margin:22px 16px 18px;font-size:8px}.terminal-screen{padding:0 16px;font-size:10px;min-height:160px}form{margin:14px 16px 20px;gap:6px}label,input{font-size:10px}.terminal-bottom{font-size:7px;padding:10px 16px}.terminal-bottom>div{gap:12px}}@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+/* ======================================================================
+   ST69 — EDITING DESK
+   Change the variables below first. Sizes use rem (1rem = 16px by default).
+   Desktop rules come first; mobile overrides are at the bottom (600px).
+   This is plain CSS: .headline here styles class="headline" in index.html.
+   ====================================================================== */
+@font-face {
+  font-family: 'IBM Plex Mono';
+  src: url('assets/fonts/IBMPlexMono-Regular.ttf') format('truetype');
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+}
 
-/* V3 — quiet command-room header and two independent channels. */
-.beacon-header{height:68px;margin:0 5vw;border-bottom:1px solid #bea46c24;display:flex;align-items:center;justify-content:flex-end;position:relative;z-index:1}
-.beacon-header .status{margin:0;color:#b5b9ac;font-size:10px;letter-spacing:1.7px}
-.status span{background:#35cc7b;box-shadow:0 0 5px #35cc7b88,0 0 14px #35cc7b44;width:6px;height:6px;animation:beacon-signal 6.9s linear infinite}
-.beacon{min-height:calc(100svh - 68px);padding:29px 24px 33px;justify-content:center}
-.invocation{margin-bottom:18px}
-.insignia-stage{width:min(50vh,440px,79vw);margin:12px 0 16px}
-.insignia{cursor:default}
-.figure{margin:4px 0 18px}
-h1{font-size:clamp(20px,2.4vw,29px);margin-bottom:0}
-.contact-actions{display:flex;justify-content:center;align-items:center;gap:24px;margin:24px 0 0}
-.contact{margin:0;min-height:57px;padding:9px 0;gap:13px;font-size:8px;line-height:1.9;letter-spacing:1px;text-align:left}
-.action-divider{width:1px;height:25px;background:linear-gradient(transparent,#bea46c55,transparent)}
-.bracket{font-size:22px;font-weight:400;transition:color .3s}
-.contact:hover .bracket{color:var(--bright)}
-.dialog-open{overflow:hidden}
-.cnm-intro{padding:25px 24px 18px;border-bottom:1px solid #bea46c15;margin-bottom:20px}
-.cnm-intro .terminal-description{margin:0 0 10px;color:#c2ac7c}
-.terminal-subtitle{font-size:10px;line-height:1.9;color:#939b8e;margin:0}
-#echo-dialog{width:min(540px,calc(100vw - 32px))}
-.echo-body{padding:33px 30px 32px}
-.echo-source{font-size:8px;letter-spacing:2px;color:#a39370;margin:0}
-.waveform{height:55px;display:flex;align-items:center;gap:5px;margin:26px 0 20px;opacity:.65}
-.waveform i{width:2px;height:10px;background:#b9a172;animation:whisper 2.7s ease-in-out infinite;transform-origin:center}
-.waveform i:nth-child(3n){height:27px;animation-delay:-.8s}.waveform i:nth-child(4n){height:40px;animation-delay:-1.6s}.waveform i:nth-child(5n){height:19px;animation-delay:-2.2s}
-.echo-message{font-size:15px;line-height:1.9;letter-spacing:.1px;color:#d0c3a2;margin:0}
-.echo-end{font-size:8px;letter-spacing:2px;margin:30px 0 0;color:#717d70}.echo-end span{color:#b8a271}
-@keyframes beacon-signal{0%,45%,51%,68%,72%,100%{opacity:1;box-shadow:0 0 5px #35cc7b88,0 0 14px #35cc7b44}46%,49%,69.5%{opacity:.35;box-shadow:none}47.5%,50%,71%{opacity:.8}}
-@keyframes whisper{0%,100%{transform:scaleY(.35);opacity:.3}45%{transform:scaleY(1);opacity:1}70%{transform:scaleY(.55);opacity:.6}}
-@media(min-height:950px) and (min-width:700px){.beacon{padding-top:35px}.insignia-stage{width:min(49vh,510px)}.contact-actions{margin-top:30px}}
-@media(max-width:600px){.beacon-header{height:57px;margin:0 22px}.beacon-header .status{font-size:7px}.beacon{min-height:calc(100svh - 57px);padding:25px 20px 30px}.cosmos{background-size:auto 150vh;background-position:48% 61%}.insignia-stage{width:min(78vw,370px);margin:20px 0}.invocation{margin-bottom:14px}.figure{margin-bottom:19px}h1{font-size:23px}.contact-actions{gap:18px;margin-top:25px}.contact{font-size:7px;letter-spacing:.7px;gap:9px}.cnm-intro{padding:22px 16px 16px}.terminal-subtitle{font-size:9px}.echo-body{padding:27px 23px}.echo-message{font-size:13px}.waveform{gap:4px}}
-@media(max-width:350px){.contact-actions{gap:10px}.contact{font-size:6px;gap:6px}.beacon-header{margin:0 18px}}
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{animation:none!important;transition:none!important}}
+:root {
+  color-scheme: dark;
+  font-family: 'IBM Plex Mono', monospace;
+  font-synthesis: none;
+
+  /* Palette */
+  --ink: #080a0b;
+  --gold: #bea46c;
+  --bright: #e5d3a9;
+  --light: #d1cfc5;
+  --muted: #93958e;
+  --line: #bea46c30;
+  --green: #35cc7b;
+  --lipstick: #dc5265;
+
+  /* Typography — these are the main controls to tinker with. */
+  --title-size: clamp(1.3rem, 2.4vw, 1.8125rem);
+  --title-tracking: .14em;
+  --copy-size: clamp(.6875rem, 1.1vw, .875rem);
+  --button-size: .5625rem;
+  --status-size: .625rem;
+  --terminal-size: .6875rem;
+
+  /* Layout / artwork */
+  --header-height: 68px;
+  --footer-height: 53px;
+  --patch-stage-size: min(48vh, 440px, 77vw);
+  --patch-brightness: 1;
+  --patch-hover-brightness: 1.05;
+  --chart-speed: 200s;
+  --edge-gutter: 5vw;
+}
+
+/* 1. Base + keyboard focus -------------------------------------------- */
+* { box-sizing: border-box; }
+body { margin: 0; min-width: 280px; background: var(--ink); color: var(--light); }
+button, input { font: inherit; }
+button { color: inherit; cursor: pointer; touch-action: manipulation; }
+button:focus-visible, input:focus-visible { outline: 1px solid var(--bright); outline-offset: 5px; }
+.dialog-open { overflow: hidden; }
+
+/* 2. Cosmic layers --------------------------------------------------- */
+.cosmos {
+  position: fixed;
+  inset: 0;
+  z-index: -3;
+  background: linear-gradient(#07090a55, #07090a77), url('assets/starfield.jpg') center 67% / max(160vw, 1500px) auto;
+  opacity: .72;
+  pointer-events: none;
+}
+.vignette {
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  background: radial-gradient(ellipse at 50% 40%, transparent 18%, #080a0ba6 75%, #080a0bed 100%);
+  pointer-events: none;
+}
+
+/* 3. Header / footer ------------------------------------------------- */
+.beacon-header, .beacon-footer { margin-inline: var(--edge-gutter); display: flex; align-items: center; }
+.beacon-header { height: var(--header-height); border-bottom: 1px solid var(--line); justify-content: flex-end; }
+.status { display: flex; align-items: center; gap: 10px; margin: 0; font-size: var(--status-size); letter-spacing: .17em; color: #b5b9ac; }
+.status span { width: 6px; height: 6px; border-radius: 50%; background: var(--green); animation: beacon-signal 6.9s linear infinite; }
+.beacon-footer { min-height: var(--footer-height); border-top: 1px solid var(--line); font-size: .5625rem; letter-spacing: .12em; color: #9d9c8f; }
+.beacon-footer sup { margin-left: 3px; font-size: .4375rem; color: var(--gold); }
+
+/* 4. Page composition ------------------------------------------------ */
+.beacon {
+  min-height: calc(100svh - var(--header-height) - var(--footer-height));
+  padding: 30px 24px 24px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
+}
+.invocation { max-width: 720px; margin: 0 0 24px; font-size: var(--copy-size); line-height: 1.9; letter-spacing: .01em; color: #c8c6b9; text-wrap: balance; }
+.insignia-stage { position: relative; display: grid; place-items: center; width: var(--patch-stage-size); aspect-ratio: 1; margin: 12px 0 16px; isolation: isolate; }
+.celestial-disc {
+  position: absolute;
+  inset: 0;
+  z-index: -1;
+  border-radius: 50%;
+  background: url('assets/celestial-chart.jpg') center / cover;
+  opacity: .32;
+  filter: sepia(.15) brightness(.8);
+  mask-image: radial-gradient(circle, #000 63%, transparent 72%);
+  animation: chart-drift var(--chart-speed) linear infinite;
+  transition: opacity 1s, filter 1s;
+}
+.orbit { position: absolute; border: 1px solid #c2a06245; border-radius: 50%; pointer-events: none; transition: transform 1.6s, opacity .8s; }
+.outer { inset: -5px; opacity: .65; transform: rotate(18deg); }
+/* Start above west/144. The hover travels farther upward, away from it. */
+.outer::after { content: ''; position: absolute; width: 4px; height: 4px; border-radius: 50%; background: var(--gold); top: 50%; left: -2px; box-shadow: 0 0 12px #bea46c88; }
+.inner { inset: 18px; border-style: dashed; opacity: .5; }
+.insignia { width: 73%; aspect-ratio: 1; padding: 0; border: 0; border-radius: 50%; background: #090c0e; box-shadow: 0 12px 40px #0009, 0 0 50px #bea46c10; position: relative; transition: transform .9s, box-shadow .9s; }
+.insignia img { display: block; width: 100%; height: 100%; border-radius: 50%; filter: brightness(var(--patch-brightness)); transition: filter .9s; }
+.insignia-stage:has(.insignia:hover, .insignia:focus-visible) .celestial-disc { opacity: .6; filter: sepia(.15) brightness(1); }
+.insignia-stage:has(.insignia:hover, .insignia:focus-visible) .outer { transform: rotate(53deg); opacity: 1; }
+.insignia:hover, .insignia:focus-visible, .insignia[aria-pressed='true'] { transform: scale(1.025); box-shadow: 0 12px 45px #000b, 0 0 70px #bea46c29; }
+.insignia:hover img, .insignia:focus-visible img { filter: brightness(var(--patch-hover-brightness)); }
+.coordinate { position: absolute; font-size: .5rem; letter-spacing: .12em; color: #a18b59; }
+.north { top: -18px; font-size: .4375rem; }
+.west { left: -28px; }
+.east { right: -26px; }
+.figure { font-size: .5rem; letter-spacing: .18em; color: var(--gold); margin: 4px 0 18px; }
+.figure > span { margin: 0 10px; color: #7c765e; }
+
+/* 5. Celestial typewriter + hidden 69 -------------------------------- */
+.headline { display: flex; align-items: baseline; gap: .55em; font-size: var(--title-size); font-weight: 400; letter-spacing: var(--title-tracking); line-height: 1.4; margin: 0; white-space: nowrap; }
+.typed-title { display: inline-flex; }
+.typed-title > span { animation: type-arrival .55s both; animation-delay: calc(.12s + var(--i) * .085s); }
+.title-number { position: relative; font-size: inherit; letter-spacing: inherit; animation: type-arrival .55s 1s both; }
+.secret-number { padding: 0; border: 0; background: none; overflow: visible; }
+.number-default { transition: opacity .25s; }
+.number-secret { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%) translateY(3px); white-space: nowrap; display: flex; align-items: center; gap: 6px; font-size: .6em; letter-spacing: .06em; color: var(--lipstick); opacity: 0; pointer-events: none; transition: opacity .25s, transform .25s; }
+.number-secret img { display: block; flex-shrink: 0; }
+.title-number .number-secret { left: 0; transform: translate(0, -50%) translateY(3px); }
+.east .number-secret { font-size: .5625rem; left: auto; right: 0; transform: translateY(-50%) translateY(3px); }
+.secret-number:is(:hover, :focus-visible, .is-revealed) .number-default { opacity: 0; }
+.secret-number:is(:hover, :focus-visible, .is-revealed) .number-secret { opacity: 1; transform: translate(-50%, -50%); }
+.title-number:is(:hover, :focus-visible, .is-revealed) .number-secret { transform: translate(0, -50%); }
+.east:is(:hover, :focus-visible, .is-revealed) .number-secret { transform: translateY(-50%); }
+
+/* 6. Contact controls ------------------------------------------------ */
+.contact-actions { display: flex; justify-content: center; align-items: center; gap: 24px; margin: 23px 0 0; }
+.contact { display: flex; align-items: center; gap: 13px; min-height: 48px; padding: 9px 0; border: 0; background: none; font-size: var(--button-size); line-height: 1.9; letter-spacing: .09em; color: var(--gold); transition: color .3s, text-shadow .3s; }
+.contact:hover { color: #efdeb4; text-shadow: 0 0 18px #bea46c80; }
+.bracket { font-size: 22px; color: #817354; }
+.contact:hover .bracket { color: var(--bright); }
+.action-divider { width: 1px; height: 25px; background: linear-gradient(transparent, #bea46c55, transparent); }
+.audio-status { min-height: 1.5em; margin: 8px 0 0; font-size: .4375rem; line-height: 1.8; letter-spacing: .11em; color: #92978a; }
+
+/* 7. Dialog shells --------------------------------------------------- */
+dialog { padding: 0; width: min(660px, calc(100vw - 32px)); max-height: calc(100svh - 40px); overflow: auto; border: 1px solid #aa925c77; background: #090d0ff5; color: #c7beaa; box-shadow: 0 0 100px #000b, 0 0 50px #bea46c10; }
+dialog::backdrop { background: #030608b8; backdrop-filter: blur(8px); }
+dialog[open] { animation: materialize .45s ease-out; }
+.terminal-bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; border-bottom: 1px solid var(--line); padding: 17px 21px; background: #bea46c05; }
+.terminal-bar h2 { margin: 0; font-size: .625rem; font-weight: 400; letter-spacing: .12em; color: var(--gold); }
+.dot { display: inline-block; width: 4px; height: 4px; margin-right: 8px; vertical-align: middle; border-radius: 50%; background: var(--gold); }
+.close { padding: 7px; border: 0; background: none; color: #a99c80; font-size: .5rem; letter-spacing: .1em; }
+.close span { font-size: 18px; margin-left: 10px; vertical-align: middle; }
+.close:hover { color: #fff0cc; }
+
+/* 8. CNM content + six prompts --------------------------------------- */
+.cnm-intro { padding: 25px 24px 18px; border-bottom: 1px solid #bea46c15; margin-bottom: 20px; }
+.terminal-description { margin: 0 0 10px; font-size: .5625rem; letter-spacing: .18em; color: #c2ac7c; }
+.terminal-subtitle { margin: 0; font-size: .625rem; line-height: 1.9; color: #939b8e; }
+.terminal-screen { padding: 0 24px; min-height: 140px; max-height: 32svh; overflow-y: auto; scrollbar-color: #5b523d transparent; font-size: var(--terminal-size); line-height: 1.9; }
+.terminal-screen p { margin: 0 0 10px; white-space: pre-wrap; overflow-wrap: anywhere; }
+.boot-two { color: #d9c48c; }
+.muted { color: #858d81; }
+.echo { color: #7f8a7e; margin-top: 15px !important; }
+.boot-one { animation: boot .4s both; }
+.boot-two { animation: boot .4s .25s both; }
+.boot-three { animation: boot .4s .5s both; }
+form { display: flex; align-items: center; gap: 10px; margin: 16px 24px 24px; border-top: 1px solid #bda16c20; padding-top: 12px; font-size: var(--terminal-size); }
+label { white-space: nowrap; color: #b6a37a; }
+label span { color: #758271; }
+input { min-width: 0; width: 100%; background: none; border: 0; border-radius: 0; color: #ded1b4; font-size: var(--terminal-size); padding: 8px 0; }
+input::placeholder { color: #6b776e; }
+form button { background: none; border: 0; color: var(--gold); font-size: 21px; padding: 5px; }
+.terminal-bottom { display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--line); padding: 11px 24px; font-size: .5rem; letter-spacing: .1em; color: #798074; }
+.terminal-bottom button, .terminal-prompts button { padding: 8px 0; border: 0; background: none; color: #b3a17a; font-size: .5rem; letter-spacing: .06em; }
+.terminal-prompts { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); padding: 9px 24px 12px; gap: 7px 16px; }
+.terminal-prompts button { min-height: 34px; text-align: left; }
+.terminal-prompts button:hover, .terminal-bottom button:hover { color: #f0ddb1; }
+
+/* 9. Eddie command echo ---------------------------------------------- */
+#echo-dialog { width: min(540px, calc(100vw - 32px)); }
+.echo-body { padding: 33px 30px 32px; }
+.echo-source { font-size: .5rem; letter-spacing: .18em; color: #a39370; margin: 0; }
+.waveform { height: 55px; display: flex; align-items: center; gap: 5px; margin: 26px 0 20px; opacity: .65; }
+.waveform i { width: 2px; height: 10px; background: #b9a172; animation: whisper 2.7s ease-in-out infinite; transform-origin: center; }
+.waveform i:nth-child(3n) { height: 27px; animation-delay: -.8s; }
+.waveform i:nth-child(4n) { height: 40px; animation-delay: -1.6s; }
+.waveform i:nth-child(5n) { height: 19px; animation-delay: -2.2s; }
+.echo-message { font-size: .9375rem; line-height: 1.9; color: #d0c3a2; margin: 0; }
+.echo-end { font-size: .5rem; letter-spacing: .18em; margin: 30px 0 0; color: #717d70; }
+.echo-end span { color: #b8a271; }
+.noscript { text-align: center; font-size: .6875rem; margin: 10px 20px 30px; }
+
+/* 10. Motion --------------------------------------------------------- */
+@keyframes chart-drift { to { transform: rotate(360deg); } }
+@keyframes materialize { from { opacity: 0; transform: translateY(12px) scale(.985); } to { opacity: 1; transform: none; } }
+@keyframes boot { from { opacity: 0; transform: translateY(3px); } to { opacity: 1; transform: none; } }
+@keyframes type-arrival { from { opacity: 0; filter: blur(3px); text-shadow: 0 0 18px var(--bright); } 65% { opacity: 1; text-shadow: 0 0 9px #e5d3a999; } to { opacity: 1; filter: blur(0); text-shadow: 0 0 2px #e5d3a922; } }
+@keyframes beacon-signal { 0%, 45%, 51%, 68%, 72%, 100% { opacity: 1; box-shadow: 0 0 5px #35cc7b88, 0 0 14px #35cc7b44; } 46%, 49%, 69.5% { opacity: .35; box-shadow: none; } 47.5%, 50%, 71% { opacity: .8; } }
+@keyframes whisper { 0%, 100% { transform: scaleY(.35); opacity: .3; } 45% { transform: scaleY(1); opacity: 1; } 70% { transform: scaleY(.55); opacity: .6; } }
+
+/* 11. Responsive breakpoints — edit these for smaller screens. -------- */
+@media (min-height: 950px) and (min-width: 700px) {
+  :root { --patch-stage-size: min(47vh, 490px); }
+  .invocation { margin-bottom: 30px; }
+}
+
+/* Phone: 600px wide or narrower. Variables here override desktop values. */
+@media (max-width: 600px) {
+  :root {
+    --header-height: 57px;
+    --footer-height: 48px;
+    --edge-gutter: 22px;
+    --patch-stage-size: min(76vw, 370px);
+    --title-size: 1.4375rem;
+    --copy-size: .6875rem;
+    --button-size: .5rem;
+    --status-size: .5rem;
+    --terminal-size: .625rem;
+  }
+  .beacon { padding: 30px 20px 22px; }
+  .cosmos { background-size: auto 150vh; background-position: 48% 61%; }
+  .invocation { max-width: 330px; margin-bottom: 22px; }
+  .insignia-stage { margin: 20px 0; }
+  .figure { margin-bottom: 19px; font-size: .4375rem; }
+  .contact-actions { gap: 18px; margin-top: 22px; }
+  .contact { gap: 9px; letter-spacing: .04em; }
+  .beacon-footer { font-size: .5rem; }
+  .terminal-bar { padding: 12px 14px; }
+  .terminal-bar h2 { font-size: .5625rem; }
+  .cnm-intro { padding: 22px 16px 16px; }
+  .terminal-subtitle { font-size: .5625rem; }
+  .terminal-screen { padding: 0 16px; min-height: 120px; }
+  form { margin: 14px 16px 20px; gap: 6px; }
+  .terminal-bottom { font-size: .4375rem; padding: 10px 16px; }
+  .terminal-prompts { padding-inline: 16px; gap: 4px 8px; }
+  .terminal-prompts button { font-size: .4375rem; }
+  .echo-body { padding: 27px 23px; }
+  .echo-message { font-size: .8125rem; }
+  .waveform { gap: 4px; }
+  .audio-status { max-width: 300px; }
+}
+
+@media (max-width: 350px) {
+  :root { --button-size: .4375rem; --title-size: 1.25rem; }
+  .contact-actions { gap: 10px; }
+  .contact { gap: 6px; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; }
+}
