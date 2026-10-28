@@ -24,7 +24,7 @@ See `EDITING.md` for a practical guide to sizing and breakpoints.
 
 ## Version 4 behaviour
 
-Hover or focus either interactive 69 to reveal SEXY 69 and red lips. Click/tap toggles the reveal. The heading arrives once through a celestial typewriter glow; it does not endlessly flicker. The footer carries SEAL TEAM 69® as requested.
+Hover or focus either interactive 69 to reveal SEXY 69 and red lips. Click/tap toggles the reveal. The heading is visible immediately. Independent random clocks roll individual characters through copies of the same letter and add celestial glows every 2–4 seconds. Both pause in hidden tabs and stop for reduced motion. The 69 reveals an overlapping lipstick sticker on hover, focus, or tap. The footer carries quiet-channel and no-telemetry copy.
 
 Click the brighter patch to hear 12 seconds of the supplied Eddie Santiago track, filtered and delayed with a fade in/out. Click again to stop. Opening either dialog or leaving the browser tab stops playback. Audio never autoplays. Adjust the start point, duration, volume, low-pass filter and delay in beacon.js. The existing command text echo remains separate from the audio patch.
 
@@ -42,10 +42,14 @@ The browser confirmed the font loaded. Earlier visual differences were affected 
 
 This prepared copy continues the original local Git history. A checkpoint preserves the user's pre-v4 files, including the rename to cnm-terminal.js and their wording edits. The page now correctly loads that renamed file. The v4 commit follows the checkpoint. No Git remote is configured on this prepared copy.
 
-The original folder /Users/localserver/dev/st69-signal-beacon was not writable from this chat and remains unchanged. A separate apply-st69-v4.py helper beside the prepared folder can apply the revision locally and save both checkpoints in the original repo when run by the owner. It checks the original files against the captured baseline first and refuses to overwrite later edits. It never replaces .git or pushes anything.
+This repository is now directly writable from the chat. Continue here using Git; preserve existing uncommitted edits. No manual version folders or apply helper are needed.
 
 ## Hosting / assets
 
 Vercel: framework Other, no build command, output directory `.`. Security headers permit the local audio asset. Public deployment and DNS changes still require owner approval.
 
 The patch, celestial chart, starfield and Eddie audio were supplied by the user. They are included for local preview; creator credits/publication permissions for supplied material were not provided. IBM Plex Mono is self-hosted under its included license. The red lips are a small SVG drawn for this revision.
+
+## Lipstick artwork
+
+`assets/sexy-69-sticker.png` was generated with the built-in image tool using the supplied lip photo as a visual reference. Prompt: realistic isolated deep-red lipstick lips, slightly parted with teeth, alongside exactly “SEXY 69” in textured handwritten red lipstick; compact horizontal composition, transparent background, no face, border, or extra text.

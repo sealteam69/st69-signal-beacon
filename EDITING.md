@@ -59,3 +59,9 @@ The `replies` object at the top of cnm-terminal.js contains all six terminal res
 4. When happy: review `git diff`, then stage and commit.
 
 No npm install, Next.js server, or build command is required.
+
+## Ongoing title and sticker
+
+In `beacon.js`, `scheduleTitleEffect` chooses the next character and waits a random 2000–4000 milliseconds. The two clocks run independently. In `style.css`, `letter-roll` controls the reel and `celestial-emphasis` controls the glow. Reduced motion disables both.
+
+The transparent lipstick artwork is `assets/sexy-69-sticker.png`. Adjust `.number-secret` width and rotation to change the overlapping sticker. Footer copy lives in `index.html`.

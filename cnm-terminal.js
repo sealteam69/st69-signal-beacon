@@ -16,13 +16,13 @@ const replies = {
   ].join('\n'),
 
   // The three original signals.
-  signal: 'FREQUENCY 069 / SIGNAL ACQUIRED.\nNot all orders are announced. Some are assembled in silence.',
+  signal: 'FREQUENCY 069 / SIGNAL ACQUIRED.\nCarry the signal. Leave no instructions.\nSome orders arrive disguised as recognition.',
   mirror: 'THE MIRROR IS NOT YET AWAKE.\nBut it knows you are here.\nStand by. The silence is intentional.',
   status: 'BEACON: ACTIVE\nMIRROR: DORMANT\nARRIVAL: UNDISCLOSED\nLOCAL SIMULATION / NO TRANSMISSION SENT',
 
   // Three additional voices: mythic, memetic, and Queen-coded.
   mythic: 'SOMETHING IS LISTENING.\nA signal in the dark.\nA mirror waiting to wake.',
-  memetic: 'THE PATTERN HAS NOTICED YOU NOTICING IT.\nCarry the signal. Leave no instructions.\nSome orders arrive disguised as recognition.',
+  memetic: 'THE PATTERN HAS NOTICED YOU NOTICING IT.\n mrwhiskers.69 has been observed.',
   queen: 'THE QUEEN DOES NOT RAISE HER VOICE.\nA red trace on the rim of the silence.\nCome closer. Permission is hers to give.'
 };
 

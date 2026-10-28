@@ -39,7 +39,7 @@
   --header-height: 68px;
   --footer-height: 53px;
   --patch-stage-size: min(48vh, 440px, 77vw);
-  --patch-brightness: 1;
+  --patch-brightness: 0.85;
   --patch-hover-brightness: 1.05;
   --chart-speed: 200s;
   --edge-gutter: 5vw;
@@ -108,8 +108,8 @@ button:focus-visible, input:focus-visible { outline: 1px solid var(--bright); ou
 /* Start above west/144. The hover travels farther upward, away from it. */
 .outer::after { content: ''; position: absolute; width: 4px; height: 4px; border-radius: 50%; background: var(--gold); top: 50%; left: -2px; box-shadow: 0 0 12px #bea46c88; }
 .inner { inset: 18px; border-style: dashed; opacity: .5; }
-.insignia { width: 73%; aspect-ratio: 1; padding: 0; border: 0; border-radius: 50%; background: #090c0e; box-shadow: 0 12px 40px #0009, 0 0 50px #bea46c10; position: relative; transition: transform .9s, box-shadow .9s; }
-.insignia img { display: block; width: 100%; height: 100%; border-radius: 50%; filter: brightness(var(--patch-brightness)); transition: filter .9s; }
+.insignia { width: 73%; aspect-ratio: 1; padding: 0; border: 0; border-radius: 50%; background: #090c0e; box-shadow: 0 12px 40px #0009, 0 0 50px #bea46c10; position: relative; transition: transform .9s, box-shadow .9s;}
+.insignia img { display: block; width: 100%; height: 100%; border-radius: 50%; filter: brightness(var(--patch-brightness)); transition: filter .9s;}
 .insignia-stage:has(.insignia:hover, .insignia:focus-visible) .celestial-disc { opacity: .6; filter: sepia(.15) brightness(1); }
 .insignia-stage:has(.insignia:hover, .insignia:focus-visible) .outer { transform: rotate(53deg); opacity: 1; }
 .insignia:hover, .insignia:focus-visible, .insignia[aria-pressed='true'] { transform: scale(1.025); box-shadow: 0 12px 45px #000b, 0 0 70px #bea46c29; }
@@ -121,21 +121,26 @@ button:focus-visible, input:focus-visible { outline: 1px solid var(--bright); ou
 .figure { font-size: .5rem; letter-spacing: .18em; color: var(--gold); margin: 4px 0 18px; }
 .figure > span { margin: 0 10px; color: #7c765e; }
 
-/* 5. Celestial typewriter + hidden 69 -------------------------------- */
+/* 5. Rolling celestial title + lipstick sticker ----------------------- */
 .headline { display: flex; align-items: baseline; gap: .55em; font-size: var(--title-size); font-weight: 400; letter-spacing: var(--title-tracking); line-height: 1.4; margin: 0; white-space: nowrap; }
 .typed-title { display: inline-flex; }
-.typed-title > span { animation: type-arrival .55s both; animation-delay: calc(.12s + var(--i) * .085s); }
-.title-number { position: relative; font-size: inherit; letter-spacing: inherit; animation: type-arrival .55s 1s both; }
+.typed-title > span, .title-glyph { display: inline-block; position: relative; }
+.title-glyph { vertical-align: bottom; }
+.glyph-window { display: inline-block; height: 1.4em; overflow: hidden; vertical-align: bottom; }
+.glyph-reel { display: flex; flex-direction: column; }
+.glyph-reel > span { display: block; height: 1.4em; flex-shrink: 0; }
+.is-rolling .glyph-reel { animation: letter-roll 1.15s cubic-bezier(.22,.65,.25,1) both; }
+.is-celestial .glyph-window { animation: celestial-emphasis 1.6s ease-in-out both; }
+.title-number { position: relative; font-size: inherit; letter-spacing: inherit; }
 .secret-number { padding: 0; border: 0; background: none; overflow: visible; }
 .number-default { transition: opacity .25s; }
-.number-secret { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%) translateY(3px); white-space: nowrap; display: flex; align-items: center; gap: 6px; font-size: .6em; letter-spacing: .06em; color: var(--lipstick); opacity: 0; pointer-events: none; transition: opacity .25s, transform .25s; }
-.number-secret img { display: block; flex-shrink: 0; }
-.title-number .number-secret { left: 0; transform: translate(0, -50%) translateY(3px); }
-.east .number-secret { font-size: .5625rem; left: auto; right: 0; transform: translateY(-50%) translateY(3px); }
-.secret-number:is(:hover, :focus-visible, .is-revealed) .number-default { opacity: 0; }
-.secret-number:is(:hover, :focus-visible, .is-revealed) .number-secret { opacity: 1; transform: translate(-50%, -50%); }
-.title-number:is(:hover, :focus-visible, .is-revealed) .number-secret { transform: translate(0, -50%); }
-.east:is(:hover, :focus-visible, .is-revealed) .number-secret { transform: translateY(-50%); }
+.number-secret { position: absolute; z-index: 5; width: 164px; left: 50%; top: 50%; transform: translate(-50%, -50%) rotate(-13deg) scale(.75); opacity: 0; pointer-events: none; transition: opacity .2s, transform .35s cubic-bezier(.2,.8,.2,1.2); filter: drop-shadow(0 3px 5px #000b); }
+.number-secret img { display: block; width: 100%; height: auto; }
+.east .number-secret { width: 126px; left: auto; right: -16px; transform: translateY(-50%) rotate(-16deg) scale(.75); }
+.secret-number:is(:hover, :focus-visible, .is-revealed) { z-index: 6; }
+.secret-number:is(:hover, :focus-visible, .is-revealed) .number-default { opacity: .2; }
+.secret-number:is(:hover, :focus-visible, .is-revealed) .number-secret { opacity: 1; transform: translate(-50%, -50%) rotate(-9deg) scale(1); }
+.east:is(:hover, :focus-visible, .is-revealed) .number-secret { transform: translateY(-50%) rotate(-12deg) scale(1); }
 
 /* 6. Contact controls ------------------------------------------------ */
 .contact-actions { display: flex; justify-content: center; align-items: center; gap: 24px; margin: 23px 0 0; }
@@ -144,7 +149,7 @@ button:focus-visible, input:focus-visible { outline: 1px solid var(--bright); ou
 .bracket { font-size: 22px; color: #817354; }
 .contact:hover .bracket { color: var(--bright); }
 .action-divider { width: 1px; height: 25px; background: linear-gradient(transparent, #bea46c55, transparent); }
-.audio-status { min-height: 1.5em; margin: 8px 0 0; font-size: .4375rem; line-height: 1.8; letter-spacing: .11em; color: #92978a; }
+.audio-status { min-height: 1.5em; margin: 8px 0 0; font-size: .5375rem; line-height: 1.8; letter-spacing: .11em; color: #92978a; }
 
 /* 7. Dialog shells --------------------------------------------------- */
 dialog { padding: 0; width: min(660px, calc(100vw - 32px)); max-height: calc(100svh - 40px); overflow: auto; border: 1px solid #aa925c77; background: #090d0ff5; color: #c7beaa; box-shadow: 0 0 100px #000b, 0 0 50px #bea46c10; }
@@ -199,7 +204,9 @@ form button { background: none; border: 0; color: var(--gold); font-size: 21px; 
 @keyframes chart-drift { to { transform: rotate(360deg); } }
 @keyframes materialize { from { opacity: 0; transform: translateY(12px) scale(.985); } to { opacity: 1; transform: none; } }
 @keyframes boot { from { opacity: 0; transform: translateY(3px); } to { opacity: 1; transform: none; } }
-@keyframes type-arrival { from { opacity: 0; filter: blur(3px); text-shadow: 0 0 18px var(--bright); } 65% { opacity: 1; text-shadow: 0 0 9px #e5d3a999; } to { opacity: 1; filter: blur(0); text-shadow: 0 0 2px #e5d3a922; } }
+@keyframes letter-roll { to { transform: translateY(-66.666667%); } }
+@keyframes celestial-emphasis { 0%, 100% { color: inherit; filter: blur(0); text-shadow: none; } 35% { color: #fff0ce; filter: blur(.35px); text-shadow: 0 0 6px #fff0ce, 0 0 18px #bea46c, 0 0 30px #bea46c88; } 65% { color: var(--bright); text-shadow: 0 0 9px #e5d3a999; } }
+
 @keyframes beacon-signal { 0%, 45%, 51%, 68%, 72%, 100% { opacity: 1; box-shadow: 0 0 5px #35cc7b88, 0 0 14px #35cc7b44; } 46%, 49%, 69.5% { opacity: .35; box-shadow: none; } 47.5%, 50%, 71% { opacity: .8; } }
 @keyframes whisper { 0%, 100% { transform: scaleY(.35); opacity: .3; } 45% { transform: scaleY(1); opacity: 1; } 70% { transform: scaleY(.55); opacity: .6; } }
 
@@ -254,3 +261,9 @@ form button { background: none; border: 0; color: var(--gold); font-size: 21px; 
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; }
 }
+
+/* Footer wraps naturally on narrow screens. */
+.beacon-footer { justify-content: space-between; gap: 12px 24px; flex-wrap: wrap; padding-block: 18px; line-height: 1.8; }
+.footer-channel { color: var(--gold); }
+.footer-note { color: var(--muted); font-size: .875em; }
+@media (max-width: 600px) { .beacon-footer { justify-content: center; text-align: center; gap: 6px 18px; } .footer-note { flex-basis: 100%; } .title-number .number-secret { width: 136px; left: 0; } }

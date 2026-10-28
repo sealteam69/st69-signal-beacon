@@ -9,24 +9,75 @@ document.querySelectorAll('.secret-number').forEach(button => {
   });
 });
 
+// Two independent random clocks: the same glyph rolls, while another glows.
+// Pause offscreen and honour reduced motion, including changes made at runtime.
+const titleGlyphs = [...document.querySelectorAll('.typed-title > span, .title-glyph')]
+  .filter(glyph => glyph.textContent.trim());
+for (const glyph of titleGlyphs) {
+  const letter = glyph.textContent;
+  const viewport = document.createElement('span');
+  viewport.className = 'glyph-window';
+  const reel = document.createElement('span');
+  reel.className = 'glyph-reel';
+  for (let copy = 0; copy < 3; copy++) {
+    const face = document.createElement('span');
+    face.textContent = letter;
+    reel.append(face);
+  }
+  viewport.append(reel);
+  glyph.replaceChildren(viewport);
+}
+const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
+let titleTimers = new Set();
+function scheduleTitleEffect(className) {
+  const timer = setTimeout(() => {
+    titleTimers.delete(timer);
+    const glyph = titleGlyphs[Math.floor(Math.random() * titleGlyphs.length)];
+    if (glyph) {
+      glyph.classList.add(className);
+      const animationName = className === 'is-rolling' ? 'letter-roll' : 'celestial-emphasis';
+      const finish = event => {
+        if (event.animationName !== animationName) return;
+        glyph.classList.remove(className);
+        glyph.removeEventListener('animationend', finish);
+      };
+      glyph.addEventListener('animationend', finish);
+    }
+    scheduleTitleEffect(className);
+  }, 2000 + Math.random() * 2000);
+  titleTimers.add(timer);
+}
+function updateTitleMotion() {
+  titleTimers.forEach(clearTimeout);
+  titleTimers.clear();
+  titleGlyphs.forEach(glyph => glyph.classList.remove('is-rolling', 'is-celestial'));
+  if (!motionPreference.matches && !document.hidden) {
+    scheduleTitleEffect('is-rolling');
+    scheduleTitleEffect('is-celestial');
+  }
+}
+motionPreference.addEventListener('change', updateTitleMotion);
+document.addEventListener('visibilitychange', updateTitleMotion);
+updateTitleMotion();
+
 // EDDIE'S DISTANT ECHO
 // Audio is created only after a deliberate patch click. No autoplay or network API.
 // Tinker with these values to change the distance, length, and loudness.
 const echoSettings = {
-  startSeconds: 0,
+  startSeconds: 7.5,
   durationSeconds: 12,
   fadeInSeconds: 1.8,
   fadeOutSeconds: 4,
   volume: 0.32,
   lowPassHz: 1500,
-  delaySeconds: 0.46,
+  delaySeconds: 0.33,
   feedback: 0.38
 };
 
 const audio = document.querySelector('#eddie-audio');
 const patch = document.querySelector('#patch-audio');
 const audioStatus = document.querySelector('#audio-status');
-const idleMessage = 'TOUCH THE INSIGNIA. LISTEN FOR THE ECHO.';
+const idleMessage = 'TOGGLE THE INSIGNIA. LISTEN FOR THE ECHO.';
 let context;
 let master;
 let stopTimer;
