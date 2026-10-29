@@ -52,7 +52,7 @@
 body { margin: 0; min-width: 280px; background: var(--ink); color: var(--light); }
 button, input { font: inherit; }
 button { color: inherit; cursor: pointer; touch-action: manipulation; }
-button:focus-visible, input:focus-visible { outline: 1px solid var(--bright); outline-offset: 5px; }
+button:focus-visible, a:focus-visible, input:focus-visible { outline: 1px solid var(--bright); outline-offset: 5px; }
 .dialog-open { overflow: hidden; }
 
 /* 2. Cosmic layers --------------------------------------------------- */
@@ -166,7 +166,7 @@ dialog[open] { animation: materialize .45s ease-out; }
 .close span { font-size: 18px; margin-left: 10px; vertical-align: middle; }
 .close:hover { color: #fff0cc; }
 
-/* 8. CNM content + six prompts --------------------------------------- */
+/* 8. CNM content + seven prompts --------------------------------------- */
 .cnm-intro { padding: 25px 24px 18px; border-bottom: 1px solid #bea46c15; margin-bottom: 20px; }
 .terminal-description { margin: 0 0 10px; font-size: .5625rem; letter-spacing: .18em; color: #c2ac7c; }
 .terminal-subtitle { margin: 0; font-size: .625rem; line-height: 1.9; color: #939b8e; }
@@ -184,7 +184,7 @@ form { display: flex; align-items: center; gap: 10px; margin: 16px 24px 24px; bo
 label { white-space: nowrap; color: #b6a37a; }
 label span { color: #758271; }
 input { min-width: 0; width: 100%; background: none; border: 0; border-radius: 0; color: #ded1b4; font-size: var(--terminal-size); padding: 8px 0; }
-input::placeholder { color: #6b776e; }
+input::placeholder { color: #768277; }
 form button { background: none; border: 0; color: var(--gold); font-size: 21px; padding: 5px; }
 .terminal-bottom { border-top: 1px solid var(--line); color: #798074; }
 
@@ -214,7 +214,6 @@ form button { background: none; border: 0; color: var(--gold); font-size: 21px; 
 
 /* 11. Responsive breakpoints — edit these for smaller screens. -------- */
 @media (min-height: 950px) and (min-width: 700px) {
-  :root { --patch-stage-size: }
   .invocation { margin-bottom: 30px; }
 }
 
@@ -283,17 +282,11 @@ a.contact { text-decoration: none; }
 #terminal-help:hover { color: #f0ddb1; }
 
 @media (min-width: 601px) and (max-width: 700px) {
-  .contact-actions {
-    gap: 8px;
-    margin-top: 16px;
-
-  .contact {
-    min-height: 32px;
-    padding: 0;
-  }
-
-  .contact .bracket {
-    line-height: 1.75;
-  }
-  }
+  .contact-actions { gap: 8px; margin-top: 16px; }
+  .contact-actions .contact { min-height: 32px; padding: 0; }
+  .contact-actions .contact .bracket { line-height: 1.75; }
 }
+
+/* Expand small icon hit areas without changing the page composition. */
+.coordinate.secret-number::before { content: ''; position: absolute; inset: 50% auto auto 50%; width: 24px; height: 24px; transform: translate(-50%, -50%); }
+#command-form button { min-width: 28px; min-height: 28px; }

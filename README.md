@@ -57,3 +57,7 @@ The patch, celestial chart, starfield and Eddie audio were supplied by the user.
 `assets/sexy-69-sticker.png` was generated with the built-in image tool using the supplied lip photo as a visual reference. Prompt: realistic isolated deep-red lipstick lips, slightly parted with teeth, alongside exactly “SEXY 69” in textured handwritten red lipstick; compact horizontal composition, transparent background, no face, border, or extra text.
 
 The current overlay uses the supplied `assets/glossy-sexy-69-sticker.png`; the earlier generated sticker remains available in assets. Local checkpoint before these changes: `4759070`.
+
+## Engineering verification
+
+See `ENGINEERING-CHECKS.md` for local evidence and remaining hosting/SEO/device checks. Run `node --test tests/beacon.test.cjs` for animation-lifecycle and rapid audio-toggle regression checks. The displayed patch uses `assets/st69-patch-display.jpg`; its supplied PNG original remains intact.

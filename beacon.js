@@ -26,6 +26,13 @@ for (const glyph of titleGlyphs) {
   }
   viewport.append(reel);
   glyph.replaceChildren(viewport);
+  // One listener per glyph, including when an animation is cancelled midway.
+  const finish = event => {
+    if (event.animationName === 'letter-roll') glyph.classList.remove('is-rolling');
+    if (event.animationName === 'celestial-emphasis') glyph.classList.remove('is-celestial');
+  };
+  glyph.addEventListener('animationend', finish);
+  glyph.addEventListener('animationcancel', finish);
 }
 const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
 let titleTimers = new Set();
@@ -39,13 +46,7 @@ function scheduleTitleEffect(className) {
         glyph.style.setProperty('--roll-direction', Math.random() < 0.5 ? 'normal' : 'reverse');
       }
       glyph.classList.add(className);
-      const animationName = className === 'is-rolling' ? 'letter-roll' : 'celestial-emphasis';
-      const finish = event => {
-        if (event.animationName !== animationName) return;
-        glyph.classList.remove(className);
-        glyph.removeEventListener('animationend', finish);
-      };
-      glyph.addEventListener('animationend', finish);
+
     }
     scheduleTitleEffect(className);
   }, 2000 + Math.random() * 2000);
@@ -155,7 +156,8 @@ async function playEcho() {
     audio.currentTime = echoSettings.startSeconds;
     const started = audio.play();
     await Promise.all([resumed, started]);
-    if (generation !== playbackGeneration) { audio.pause(); return; }
+    // A superseded request must not pause a newer playback session.
+    if (generation !== playbackGeneration) return;
 
     const now = context.currentTime;
     master.gain.cancelScheduledValues(now);
