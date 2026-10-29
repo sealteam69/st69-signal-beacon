@@ -28,9 +28,9 @@
   --lipstick: #dc5265;
 
   /* Typography — these are the main controls to tinker with. */
-  --title-size: clamp(1.3rem, 2.4vw, 1.8125rem);
+  --title-size: 1.8725rem;
   --title-tracking: .14em;
-  --copy-size: clamp(.6875rem, 1.1vw, .875rem);
+  --copy-size: 0.7275rem;
   --button-size: .5625rem;
   --status-size: .625rem;
   --terminal-size: .6875rem;
@@ -38,11 +38,13 @@
   /* Layout / artwork */
   --header-height: 68px;
   --footer-height: 53px;
-  --patch-stage-size: min(48vh, 440px, 77vw);
+  --patch-stage-size: min(440px, 77vw);
   --patch-brightness: 0.85;
   --patch-hover-brightness: 1.05;
   --chart-speed: 200s;
   --edge-gutter: 5vw;
+  --signal-copy-gap: 12px;
+  --mobile-button-gap: 0px; /* Vertical space between stacked contact buttons. */
 }
 
 /* 1. Base + keyboard focus -------------------------------------------- */
@@ -58,15 +60,15 @@ button:focus-visible, input:focus-visible { outline: 1px solid var(--bright); ou
   position: fixed;
   inset: 0;
   z-index: -3;
-  background: linear-gradient(#07090a55, #07090a77), url('assets/starfield.jpg') center 67% / max(160vw, 1500px) auto;
-  opacity: .72;
+  background: linear-gradient(#07090a44, #07090a66), url('assets/starfield.jpg') center 67% / max(160vw, 1500px) auto;
+  opacity: .81;
   pointer-events: none;
 }
 .vignette {
   position: fixed;
   inset: 0;
   z-index: -2;
-  background: radial-gradient(ellipse at 50% 40%, transparent 18%, #080a0ba6 75%, #080a0bed 100%);
+  background: radial-gradient(ellipse at 50% 40%, transparent 18%, #080a0b80 75%, #080a0bcc 100%);
   pointer-events: none;
 }
 
@@ -81,7 +83,7 @@ button:focus-visible, input:focus-visible { outline: 1px solid var(--bright); ou
 /* 4. Page composition ------------------------------------------------ */
 .beacon {
   min-height: calc(100svh - var(--header-height) - var(--footer-height));
-  padding: 30px 24px 24px;
+  padding: 30px 24px 18px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -122,14 +124,14 @@ button:focus-visible, input:focus-visible { outline: 1px solid var(--bright); ou
 .figure > span { margin: 0 10px; color: #7c765e; }
 
 /* 5. Rolling celestial title + lipstick sticker ----------------------- */
-.headline { display: flex; align-items: baseline; gap: .55em; font-size: var(--title-size); font-weight: 400; letter-spacing: var(--title-tracking); line-height: 1.4; margin: 0; white-space: nowrap; }
+.headline { display: flex; align-items: baseline; gap: .55em; font-size: var(--title-size); font-weight: 400; letter-spacing: var(--title-tracking); line-height: 1.4; margin: 12px 0 0; white-space: nowrap; }
 .typed-title { display: inline-flex; }
 .typed-title > span, .title-glyph { display: inline-block; position: relative; }
 .title-glyph { vertical-align: bottom; }
 .glyph-window { display: inline-block; height: 1.4em; overflow: hidden; vertical-align: bottom; }
 .glyph-reel { display: flex; flex-direction: column; }
 .glyph-reel > span { display: block; height: 1.4em; flex-shrink: 0; }
-.is-rolling .glyph-reel { animation: letter-roll 1.15s cubic-bezier(.22,.65,.25,1) both; }
+.is-rolling .glyph-reel { animation: letter-roll 1.15s cubic-bezier(.22,.65,.25,1) both; animation-direction: var(--roll-direction, normal); }
 .is-celestial .glyph-window { animation: celestial-emphasis 1.6s ease-in-out both; }
 .title-number { position: relative; font-size: inherit; letter-spacing: inherit; }
 .secret-number { padding: 0; border: 0; background: none; overflow: visible; }
@@ -143,22 +145,24 @@ button:focus-visible, input:focus-visible { outline: 1px solid var(--bright); ou
 .east:is(:hover, :focus-visible, .is-revealed) .number-secret { transform: translateY(-50%) rotate(-12deg) scale(1); }
 
 /* 6. Contact controls ------------------------------------------------ */
-.contact-actions { display: flex; justify-content: center; align-items: center; gap: 24px; margin: 23px 0 0; }
-.contact { display: flex; align-items: center; gap: 13px; min-height: 48px; padding: 9px 0; border: 0; background: none; font-size: var(--button-size); line-height: 1.9; letter-spacing: .09em; color: var(--gold); transition: color .3s, text-shadow .3s; }
+.contact-actions { display: flex; justify-content: center; align-items: center; gap: 24px; margin: 0 0 0; }
+.contact { display: flex; align-items: center; gap: 13px; min-height: 24px; padding: 11px 0; border: 0; background: none; font-size: var(--button-size); line-height: 1.9; letter-spacing: .09em; color: var(--gold); transition: color .3s, text-shadow .3s; }
 .contact:hover { color: #efdeb4; text-shadow: 0 0 18px #bea46c80; }
 .bracket { font-size: 22px; color: #817354; }
 .contact:hover .bracket { color: var(--bright); }
 .action-divider { width: 1px; height: 25px; background: linear-gradient(transparent, #bea46c55, transparent); }
-.audio-status { min-height: 1.5em; margin: 8px 0 0; font-size: .5375rem; line-height: 1.8; letter-spacing: .11em; color: #92978a; }
+.audio-status { min-height: 1.5em; margin: 28px 0 6px; font-size: .5375rem; line-height: 1.8; letter-spacing: .11em; color: #92978a; }
 
 /* 7. Dialog shells --------------------------------------------------- */
 dialog { padding: 0; width: min(660px, calc(100vw - 32px)); max-height: calc(100svh - 40px); overflow: auto; border: 1px solid #aa925c77; background: #090d0ff5; color: #c7beaa; box-shadow: 0 0 100px #000b, 0 0 50px #bea46c10; }
 dialog::backdrop { background: #030608b8; backdrop-filter: blur(8px); }
 dialog[open] { animation: materialize .45s ease-out; }
-.terminal-bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; border-bottom: 1px solid var(--line); padding: 17px 21px; background: #bea46c05; }
-.terminal-bar h2 { margin: 0; font-size: .625rem; font-weight: 400; letter-spacing: .12em; color: var(--gold); }
-.dot { display: inline-block; width: 4px; height: 4px; margin-right: 8px; vertical-align: middle; border-radius: 50%; background: var(--gold); }
-.close { padding: 7px; border: 0; background: none; color: #a99c80; font-size: .5rem; letter-spacing: .1em; }
+.terminal-bar { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 60px; margin: 0; padding: 12px 24px; font-size: .625rem; line-height: 1.6; letter-spacing: .12em; background: #bea46c05; }
+.terminal-bottom { display: flex; align-items: center; justify-content: space-between; gap: 12px; min-height: 60px; margin: 0; padding: 12px 24px; font-size: .525rem; line-height: 1.6; letter-spacing: .12em; background: #bea46c05; }
+.terminal-bar { border-bottom: 1px solid var(--line); }
+.terminal-bar h2 { margin: 0; font-size: inherit; line-height: inherit; font-weight: 400; letter-spacing: inherit; color: var(--gold); }
+.dot { width: 4px; height: 4px; margin-right: 8px; vertical-align: middle; border-radius: 50%; background: var(--gold); }
+.close { padding: 4px 0; min-height: 32px; border: 0; background: none; color: #a99c80; font-size: inherit; line-height: inherit; letter-spacing: inherit; }
 .close span { font-size: 18px; margin-left: 10px; vertical-align: middle; }
 .close:hover { color: #fff0cc; }
 
@@ -166,8 +170,10 @@ dialog[open] { animation: materialize .45s ease-out; }
 .cnm-intro { padding: 25px 24px 18px; border-bottom: 1px solid #bea46c15; margin-bottom: 20px; }
 .terminal-description { margin: 0 0 10px; font-size: .5625rem; letter-spacing: .18em; color: #c2ac7c; }
 .terminal-subtitle { margin: 0; font-size: .625rem; line-height: 1.9; color: #939b8e; }
-.terminal-screen { padding: 0 24px; min-height: 140px; max-height: 32svh; overflow-y: auto; scrollbar-color: #5b523d transparent; font-size: var(--terminal-size); line-height: 1.9; }
+.terminal-screen { padding: 22px 24px 12px; min-height: 140px; max-height: 32svh; overflow-y: auto; scrollbar-color: #5b523d transparent; font-size: var(--terminal-size); line-height: 1.9; }
 .terminal-screen p { margin: 0 0 10px; white-space: pre-wrap; overflow-wrap: anywhere; }
+.terminal-screen .boot-one, .terminal-screen .boot-two { margin-bottom: 0; }
+.terminal-screen .boot-three { margin-top: 1em; }
 .boot-two { color: #d9c48c; }
 .muted { color: #858d81; }
 .echo { color: #7f8a7e; margin-top: 15px !important; }
@@ -180,11 +186,7 @@ label span { color: #758271; }
 input { min-width: 0; width: 100%; background: none; border: 0; border-radius: 0; color: #ded1b4; font-size: var(--terminal-size); padding: 8px 0; }
 input::placeholder { color: #6b776e; }
 form button { background: none; border: 0; color: var(--gold); font-size: 21px; padding: 5px; }
-.terminal-bottom { display: flex; align-items: center; justify-content: space-between; border-top: 1px solid var(--line); padding: 11px 24px; font-size: .5rem; letter-spacing: .1em; color: #798074; }
-.terminal-bottom button, .terminal-prompts button { padding: 8px 0; border: 0; background: none; color: #b3a17a; font-size: .5rem; letter-spacing: .06em; }
-.terminal-prompts { display: grid; grid-template-columns: repeat(3, 1fr); border-top: 1px solid var(--line); padding: 9px 24px 12px; gap: 7px 16px; }
-.terminal-prompts button { min-height: 34px; text-align: left; }
-.terminal-prompts button:hover, .terminal-bottom button:hover { color: #f0ddb1; }
+.terminal-bottom { border-top: 1px solid var(--line); color: #798074; }
 
 /* 9. Eddie command echo ---------------------------------------------- */
 #echo-dialog { width: min(540px, calc(100vw - 32px)); }
@@ -212,7 +214,7 @@ form button { background: none; border: 0; color: var(--gold); font-size: 21px; 
 
 /* 11. Responsive breakpoints — edit these for smaller screens. -------- */
 @media (min-height: 950px) and (min-width: 700px) {
-  :root { --patch-stage-size: min(47vh, 490px); }
+  :root { --patch-stage-size: }
   .invocation { margin-bottom: 30px; }
 }
 
@@ -223,33 +225,30 @@ form button { background: none; border: 0; color: var(--gold); font-size: 21px; 
     --footer-height: 48px;
     --edge-gutter: 22px;
     --patch-stage-size: min(76vw, 370px);
-    --title-size: 1.4375rem;
-    --copy-size: .6875rem;
+    --title-size: 1.5875rem;
+    --copy-size: .6175rem;
     --button-size: .5rem;
-    --status-size: .5rem;
+    --status-size: .55rem;
     --terminal-size: .625rem;
   }
   .beacon { padding: 30px 20px 22px; }
   .cosmos { background-size: auto 150vh; background-position: 48% 61%; }
-  .invocation { max-width: 330px; margin-bottom: 22px; }
-  .insignia-stage { margin: 20px 0; }
+  .invocation { max-width: 330px; margin-bottom: 24px; }
+  .insignia-stage { margin: 20px; }
   .figure { margin-bottom: 19px; font-size: .4375rem; }
-  .contact-actions { gap: 18px; margin-top: 22px; }
-  .contact { gap: 9px; letter-spacing: .04em; }
+  .contact-actions { gap: 18px; }
+  .contact { gap: 9px; letter-spacing: .04em; min-height: 0px; padding: 0px 0; margin-top: 0px;}
+  .contact .bracket {line-height: 1.9;}
   .beacon-footer { font-size: .5rem; }
-  .terminal-bar { padding: 12px 14px; }
-  .terminal-bar h2 { font-size: .5625rem; }
+  .terminal-bar, .terminal-bottom { padding: 12px 16px; font-size: .5625rem; }
   .cnm-intro { padding: 22px 16px 16px; }
   .terminal-subtitle { font-size: .5625rem; }
-  .terminal-screen { padding: 0 16px; min-height: 120px; }
+  .terminal-screen { padding: 20px 16px 12px; min-height: 120px; }
   form { margin: 14px 16px 20px; gap: 6px; }
-  .terminal-bottom { font-size: .4375rem; padding: 10px 16px; }
-  .terminal-prompts { padding-inline: 16px; gap: 4px 8px; }
-  .terminal-prompts button { font-size: .4375rem; }
   .echo-body { padding: 27px 23px; }
   .echo-message { font-size: .8125rem; }
   .waveform { gap: 4px; }
-  .audio-status { max-width: 300px; }
+  .audio-status { max-width: 300px; margin-bottom: 24px;}
 }
 
 @media (max-width: 350px) {
@@ -267,3 +266,34 @@ form button { background: none; border: 0; color: var(--gold); font-size: 21px; 
 .footer-channel { color: var(--gold); }
 .footer-note { color: var(--muted); font-size: .875em; }
 @media (max-width: 600px) { .beacon-footer { justify-content: center; text-align: center; gap: 6px 18px; } .footer-note { flex-basis: 100%; } .title-number .number-secret { width: 136px; left: 0; } }
+
+/* Links share the original contact control treatment. */
+a.contact { text-decoration: none; }
+.contact-actions { flex-wrap: nowrap; }
+
+/* Stack before the desktop row runs out of room; keep phone typography at 600px. */
+@media (max-width: 700px) {
+  .contact-actions { flex-direction: column; gap: var(--mobile-button-gap); }
+  .contact-actions .action-divider { display: none; }
+}
+
+.return-icon { display: block; width: 18px; height: 18px; margin: auto; }
+
+#terminal-help { padding: 4px 0; min-height: 32px; border: 0; background: none; color: #b3a17a; font-size: inherit; line-height: inherit; letter-spacing: inherit; }
+#terminal-help:hover { color: #f0ddb1; }
+
+@media (min-width: 601px) and (max-width: 700px) {
+  .contact-actions {
+    gap: 8px;
+    margin-top: 16px;
+
+  .contact {
+    min-height: 32px;
+    padding: 0;
+  }
+
+  .contact .bracket {
+    line-height: 1.75;
+  }
+  }
+}

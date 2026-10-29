@@ -34,6 +34,10 @@ function scheduleTitleEffect(className) {
     titleTimers.delete(timer);
     const glyph = titleGlyphs[Math.floor(Math.random() * titleGlyphs.length)];
     if (glyph) {
+      if (className === 'is-rolling') {
+        // Every roll chooses its own direction; glyph selection stays random.
+        glyph.style.setProperty('--roll-direction', Math.random() < 0.5 ? 'normal' : 'reverse');
+      }
       glyph.classList.add(className);
       const animationName = className === 'is-rolling' ? 'letter-roll' : 'celestial-emphasis';
       const finish = event => {
@@ -64,8 +68,8 @@ updateTitleMotion();
 // Audio is created only after a deliberate patch click. No autoplay or network API.
 // Tinker with these values to change the distance, length, and loudness.
 const echoSettings = {
-  startSeconds: 7.5,
-  durationSeconds: 12,
+  startSeconds: 15.5,
+  durationSeconds: 12.5,
   fadeInSeconds: 1.8,
   fadeOutSeconds: 4,
   volume: 0.32,
@@ -130,7 +134,7 @@ function stopEcho(message = idleMessage) {
     tailTimer = setTimeout(() => { context.suspend().catch(() => {}); }, 500);
   }
   patch.setAttribute('aria-pressed', 'false');
-  patch.setAttribute('aria-label', 'Play a distant Eddie echo');
+  patch.setAttribute('aria-label', 'Play a distant echo');
   audioStatus.textContent = message;
 }
 
@@ -159,7 +163,7 @@ async function playEcho() {
     master.gain.linearRampToValueAtTime(echoSettings.volume, now + echoSettings.fadeInSeconds);
     master.gain.setValueAtTime(echoSettings.volume, now + echoSettings.durationSeconds - echoSettings.fadeOutSeconds);
     master.gain.linearRampToValueAtTime(0, now + echoSettings.durationSeconds);
-    audioStatus.textContent = 'EDDIE / DISTANT ECHO — TOUCH THE INSIGNIA TO SILENCE.';
+    audioStatus.textContent = 'A DISTANT ECHO — TOUCH THE INSIGNIA TO SILENCE.';
     stopTimer = setTimeout(() => stopEcho(), echoSettings.durationSeconds * 1000);
   } catch {
     if (generation === playbackGeneration) stopEcho('ECHO UNAVAILABLE. CHECK SOUND PERMISSIONS, THEN TRY AGAIN.');

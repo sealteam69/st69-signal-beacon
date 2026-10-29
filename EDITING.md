@@ -49,7 +49,7 @@ The 350px breakpoint handles very narrow screens. The tall-desktop query enlarge
 
 `beacon.js` starts with `echoSettings`. Change `startSeconds` to choose another part of the song. Duration, volume and filtering are beside it. The audio plays only after a patch click.
 
-The `replies` object at the top of cnm-terminal.js contains all six terminal responses. `\n` starts a new line. Page wording lives in index.html.
+The `replies` object at the top of cnm-terminal.js contains all seven terminal responses. `\n` starts a new line. Page wording lives in index.html.
 
 ## Useful editing loop
 
@@ -64,4 +64,4 @@ No npm install, Next.js server, or build command is required.
 
 In `beacon.js`, `scheduleTitleEffect` chooses the next character and waits a random 2000–4000 milliseconds. The two clocks run independently. In `style.css`, `letter-roll` controls the reel and `celestial-emphasis` controls the glow. Reduced motion disables both.
 
-The transparent lipstick artwork is `assets/sexy-69-sticker.png`. Adjust `.number-secret` width and rotation to change the overlapping sticker. Footer copy lives in `index.html`.
+The current lipstick artwork is `assets/glossy-sexy-69-sticker.png`. Adjust `.number-secret` width and rotation to change the overlapping sticker. Footer copy lives in `index.html`.
