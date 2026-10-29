@@ -34,6 +34,8 @@
   --button-size: .5625rem;
   --status-size: .625rem;
   --terminal-size: .6875rem;
+  --coordinate-size: .5675rem; /* Desktop 144 and 69: 10px. */
+  --north-coordinate-size: .5675rem; /* Desktop 33: 9px. */
 
   /* Layout / artwork */
   --header-height: 68px;
@@ -116,10 +118,10 @@ button:focus-visible, a:focus-visible, input:focus-visible { outline: 1px solid 
 .insignia-stage:has(.insignia:hover, .insignia:focus-visible) .outer { transform: rotate(53deg); opacity: 1; }
 .insignia:hover, .insignia:focus-visible, .insignia[aria-pressed='true'] { transform: scale(1.025); box-shadow: 0 12px 45px #000b, 0 0 70px #bea46c29; }
 .insignia:hover img, .insignia:focus-visible img { filter: brightness(var(--patch-hover-brightness)); }
-.coordinate { position: absolute; font-size: .5rem; letter-spacing: .12em; color: #a18b59; }
-.north { top: -18px; font-size: .4375rem; }
+.coordinate { position: absolute; font-size: var(--coordinate-size); letter-spacing: .12em; color: #a18b59; }
+.north { top: -20px; font-size: var(--north-coordinate-size); }
 .west { left: -28px; }
-.east { right: -26px; }
+.east { right: -24px; }
 .figure { font-size: .5rem; letter-spacing: .18em; color: var(--gold); margin: 4px 0 18px; }
 .figure > span { margin: 0 10px; color: #7c765e; }
 
@@ -229,6 +231,8 @@ form button { background: none; border: 0; color: var(--gold); font-size: 21px; 
     --button-size: .5rem;
     --status-size: .55rem;
     --terminal-size: .625rem;
+    --coordinate-size: .4975rem;
+    --north-coordinate-size: .4975rem;
   }
   .beacon { padding: 30px 20px 22px; }
   .cosmos { background-size: auto 150vh; background-position: 48% 61%; }
@@ -290,3 +294,15 @@ a.contact { text-decoration: none; }
 /* Expand small icon hit areas without changing the page composition. */
 .coordinate.secret-number::before { content: ''; position: absolute; inset: 50% auto auto 50%; width: 24px; height: 24px; transform: translate(-50%, -50%); }
 #command-form button { min-width: 28px; min-height: 28px; }
+
+/* Toolbar scrolling on all devices: anchor decorative layers to a stable large viewport.
+   Unlike a dynamic height, lvh does not resize as browser chrome slides away. */
+.cosmos,
+.vignette {
+  bottom: auto;
+  height: 100vh; /* Fallback for older browsers. */
+  height: 100lvh;
+}
+@media (max-width: 600px) {
+  .cosmos { background-size: auto 150lvh; }
+}
