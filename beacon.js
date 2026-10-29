@@ -69,7 +69,7 @@ updateTitleMotion();
 // Audio is created only after a deliberate patch click. No autoplay or network API.
 // Tinker with these values to change the distance, length, and loudness.
 const echoSettings = {
-  startSeconds: 15.5,
+  startSeconds: 15.75,
   durationSeconds: 12.5,
   fadeInSeconds: 1.8,
   fadeOutSeconds: 4,
