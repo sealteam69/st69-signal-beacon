@@ -237,7 +237,7 @@ form button { background: none; border: 0; color: var(--gold); font-size: 21px; 
   .beacon {
     /* Increase 16px to shorten the mobile minimum height further. */
     min-height: calc(100svh - var(--header-height) - var(--footer-height) - 16px);
-    padding: 12px 20px 10px;
+    padding: 32px 20px 28px;
   }
   .cosmos { background-size: auto 150vh; background-position: 48% 61%; }
   .invocation { max-width: 330px; margin: 0 0 24px; }
@@ -255,7 +255,7 @@ form button { background: none; border: 0; color: var(--gold); font-size: 21px; 
   .echo-body { padding: 27px 23px; }
   .echo-message { font-size: .8125rem; }
   .waveform { gap: 4px; }
-  .audio-status { max-width: 300px; margin: 25px 0 20px;}
+  .audio-status { max-width: 300px; margin: 24px 0 20px;}
 }
 
 @media (max-width: 350px) {
@@ -317,4 +317,11 @@ a.contact { text-decoration: none; }
 @media (hover: none) and (pointer: coarse) {
   .cosmos,
   .vignette { transform: translateZ(0); }
+}
+
+@media (max-width: 600px) {
+  .beacon-footer {
+    padding-block: 14px; /* Currently 18px above and below */
+    gap: 5px 18px;       /* Currently 6px between text rows */
+  }
 }
