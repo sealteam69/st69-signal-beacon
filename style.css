@@ -85,7 +85,7 @@ button:focus-visible, a:focus-visible, input:focus-visible { outline: 1px solid 
 /* 4. Page composition ------------------------------------------------ */
 .beacon {
   min-height: calc(100svh - var(--header-height) - var(--footer-height));
-  padding: 30px 24px 18px;
+  padding: 26px 24px 18px;
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -138,7 +138,7 @@ button:focus-visible, a:focus-visible, input:focus-visible { outline: 1px solid 
 .title-number { position: relative; font-size: inherit; letter-spacing: inherit; }
 .secret-number { padding: 0; border: 0; background: none; overflow: visible; }
 .number-default { transition: opacity .25s; }
-.number-secret { position: absolute; z-index: 5; width: 164px; left: 50%; top: 50%; transform: translate(-50%, -50%) rotate(-13deg) scale(.75); opacity: 0; pointer-events: none; transition: opacity .2s, transform .35s cubic-bezier(.2,.8,.2,1.2); filter: drop-shadow(0 3px 5px #000b); }
+.number-secret { position: absolute; z-index: 5; width: 169px; left: 75%; top: 50%; transform: translate(-50%, -50%) rotate(-13deg) scale(.75); opacity: 0; pointer-events: none; transition: opacity .2s, transform .35s cubic-bezier(.2,.8,.2,1.2); filter: drop-shadow(0 3px 5px #000b); }
 .number-secret img { display: block; width: 100%; height: auto; }
 .east .number-secret { width: 126px; left: auto; right: -16px; transform: translateY(-50%) rotate(-16deg) scale(.75); }
 .secret-number:is(:hover, :focus-visible, .is-revealed) { z-index: 6; }
@@ -234,11 +234,15 @@ form button { background: none; border: 0; color: var(--gold); font-size: 21px; 
     --coordinate-size: .4975rem;
     --north-coordinate-size: .4975rem;
   }
-  .beacon { padding: 30px 20px 22px; }
+  .beacon {
+    /* Increase 16px to shorten the mobile minimum height further. */
+    min-height: calc(100svh - var(--header-height) - var(--footer-height) - 16px);
+    padding: 12px 20px 10px;
+  }
   .cosmos { background-size: auto 150vh; background-position: 48% 61%; }
-  .invocation { max-width: 330px; margin-bottom: 24px; }
+  .invocation { max-width: 330px; margin: 0 0 24px; }
   .insignia-stage { margin: 20px; }
-  .figure { margin-bottom: 19px; font-size: .4375rem; }
+  .figure { margin-bottom: 15px; font-size: .4375rem; }
   .contact-actions { gap: 18px; }
   .contact { gap: 9px; letter-spacing: .04em; min-height: 0px; padding: 0px 0; margin-top: 0px;}
   .contact .bracket {line-height: 1.9;}
@@ -251,7 +255,7 @@ form button { background: none; border: 0; color: var(--gold); font-size: 21px; 
   .echo-body { padding: 27px 23px; }
   .echo-message { font-size: .8125rem; }
   .waveform { gap: 4px; }
-  .audio-status { max-width: 300px; margin-bottom: 24px;}
+  .audio-status { max-width: 300px; margin: 25px 0 20px;}
 }
 
 @media (max-width: 350px) {
@@ -268,7 +272,7 @@ form button { background: none; border: 0; color: var(--gold); font-size: 21px; 
 .beacon-footer { justify-content: space-between; gap: 12px 24px; flex-wrap: wrap; padding-block: 18px; line-height: 1.8; }
 .footer-channel { color: var(--gold); }
 .footer-note { color: var(--muted); font-size: .875em; }
-@media (max-width: 600px) { .beacon-footer { justify-content: center; text-align: center; gap: 6px 18px; } .footer-note { flex-basis: 100%; } .title-number .number-secret { width: 136px; left: 0; } }
+@media (max-width: 600px) { .beacon-footer { justify-content: center; text-align: center; gap: 6px 18px; } .footer-note { flex-basis: 100%; } .title-number .number-secret { width: 139px; left: 75%; } }
 
 /* Links share the original contact control treatment. */
 a.contact { text-decoration: none; }
@@ -305,4 +309,12 @@ a.contact { text-decoration: none; }
 }
 @media (max-width: 600px) {
   .cosmos { background-size: auto 150lvh; }
+}
+
+/* Touch-device scroll repaint workaround. Keep just the decorative backgrounds
+   composited; do not transform the page or change its scrolling behaviour.
+   Device testing is still needed for browser-toolbar transitions. */
+@media (hover: none) and (pointer: coarse) {
+  .cosmos,
+  .vignette { transform: translateZ(0); }
 }

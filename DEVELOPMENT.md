@@ -1,6 +1,6 @@
 # ST69 Signal Beacon — v4
 
-Plain HTML, CSS, and JavaScript. No build step, backend, data collection, browser storage, or third-party runtime requests. Vercel deployment remains unperformed.
+Plain HTML, CSS, and JavaScript. No build step or application backend. Vercel Web Analytics collects aggregate visit statistics on hosted pages; localhost previews do not load analytics.
 
 ## Preview
 
@@ -55,3 +55,9 @@ The patch, celestial chart, starfield, glossy sticker and Eddie audio were suppl
 ## Engineering verification
 
 See `ENGINEERING-CHECKS.md` for local evidence and remaining hosting/SEO/device checks. Run `node --test tests/beacon.test.cjs` for animation-lifecycle and rapid audio-toggle regression checks. The displayed patch uses `assets/st69-patch-display.jpg`; its supplied PNG original remains intact.
+
+## Vercel Web Analytics
+
+`analytics.js` loads Vercel's same-origin `/_vercel/insights/script.js` on hosted pages only. No npm package or build step is needed. Enable Web Analytics in the ST69 Vercel project before deploying. `vercel.json` permits same-origin event connections. Only default page views are collected; no terminal commands or audio/sticker events are sent by our code. Browser content blockers can prevent analytics from loading.
+
+After deployment, visit the site without a content blocker and check the Vercel Analytics dashboard. Local syntax checks cannot verify event delivery or dashboard totals.

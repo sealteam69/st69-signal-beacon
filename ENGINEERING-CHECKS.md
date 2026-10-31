@@ -34,3 +34,7 @@ git diff --check
 ```
 
 This is a local engineering review, not evidence of a public deployment. No push, public deployment or DNS changes were performed.
+
+## Analytics update — 31 October 2026
+
+The earlier no-analytics source review above describes the pre-analytics build. Vercel Web Analytics is now integrated through `analytics.js`, with same-origin connections allowed in CSP. Default page-view analytics do not include terminal commands or explicit custom events. Dashboard enablement, deployment and real event delivery must be verified separately.
