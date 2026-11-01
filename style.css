@@ -255,7 +255,7 @@ form button { background: none; border: 0; color: var(--gold); font-size: 21px; 
   .echo-body { padding: 27px 23px; }
   .echo-message { font-size: .8125rem; }
   .waveform { gap: 4px; }
-  .audio-status { max-width: 300px; margin: 23px 0 28px;}
+  .audio-status { max-width: 300px; margin: 23px 0 22px;}
 }
 
 @media (max-width: 350px) {
